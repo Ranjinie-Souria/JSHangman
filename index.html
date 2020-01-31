@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Jeu du pendu en Javascript</title>
-
-    // TODO trim la liste afficheLettres pour vérifier si on a déjà envoyé cette lettre
-    // Essayer d'enlever le vide causé par le style visibility hidden
-    // Mettre js et css dans fichiers différents
-    // Montrer le nombre de chances restantes
-
-
-    // ? Importer des fichiers JSON ?
-
     <style>
         body{
             background: fixed linear-gradient(#1f030a, #c00037);
@@ -38,7 +29,7 @@
             background-color: #f7e2e5;
             border: solid 1px #d895ac;
             color: #c00037;
-            width: 50%;
+            width: 23%;
             height: 500px;
             margin-left: auto;
             margin-right: auto;
@@ -107,6 +98,13 @@
         }
     </style>
     <script type="text/javascript">
+        // TODO trim la liste afficheLettres pour vérifier si on a déjà envoyé cette lettre
+        // Essayer d'enlever le vide causé par le style visibility hidden
+        // Mettre js et css dans fichiers différents
+        // Montrer le nombre de chances restantes
+
+
+        // ? Importer des fichiers JSON ?
          window.onload = function(){
 
             var titre = document.getElementById('titre');
@@ -117,6 +115,7 @@
             var main2 = document.getElementById('main2');
             var listelabel = document.getElementById('listelabel');
             var button = document.getElementById('button');
+            var lemot = document.getElementById('lemot');
             var button2 = document.getElementById('button2');
             var maintext = document.getElementById('maintext');
             var title = document.getElementById('title');
@@ -196,26 +195,33 @@
 
                 btn_sub.onclick = function(e){
                     value = document.forms[0].elements.name.value;
-                    value = value[0].toLowerCase();
-                    var presence = false;
+                    value = value[0];
+                    if(!value.isEmpty|| value.isset()){
+                        value = value.toLowerCase();
+                        var presence = false;
 
-                    for(var i = 0; i<mot.length;i++){
-                        if(value == mot[i]){
-                            new_mot[i] = value;
-                            presence = true;
+                        for(var i = 0; i<mot.length;i++){
+                            if(value == mot[i]){
+                                new_mot[i] = value;
+                                presence = true;
+                            }
                         }
-                    }
-                    if(!presence){
-                        lettres += value;
-                        afficheLettres += " "+value;
+                        if(!presence){
+                            lettres += value;
+                            afficheLettres += " "+value;
 
+                        }
+                        var affiche = "";
+                        for(var i = 0; i < new_mot.length; i++){
+                            affiche += " "+new_mot[i];
+                        }
+                        le_mot.value = affiche;
+                        liste.value = afficheLettres;
                     }
-                    var affiche = "";
-                    for(var i = 0; i < new_mot.length; i++){
-                        affiche += " "+new_mot[i];
+                    else{
+                        return false;
                     }
-                    le_mot.value = affiche;
-                    liste.value = afficheLettres;
+
 
 
                 if(lettres.length>=10){
@@ -241,8 +247,8 @@
                     button.style.visibility = 'hidden';
                     listelabel.style.visibility = 'hidden';
                     form.style.visibility = 'hidden';
-                    le_mot.style.border = 'solid 1px white';
-                    le_mot.value = motDeviner.value;
+                    le_mot.style.visibility = 'hidden';
+                    lemot.value = motDeviner.value;
                 }
                }
             }
@@ -289,16 +295,25 @@
 
 <body>
 <h1>Jeu du pendu</h1>
+<input class="button-class" style="width: 300px;position:absolute;z-index:5;top:100px;" type="button" id="hide"
+       value="Afficher / Cacher la liste des mots">
+<div id="main2" class="main2" style="visibility:hidden;position:absolute;top:150px;">
+    <section></section>
+</div>
 
 <div class="main" id="victory" style="visibility:hidden">
     <div class="title">Victoire</div>
-    <div class="texte"> Félicitations ! Vous avez deviné le mot !</div>
+    <div class="texte"> Félicitations ! Vous avez deviné le mot !<br/> Il s'agissait de <input id="lemot" disabled>
+    </div>
 </div>
 <input type="hidden" id="motDeviner">
 <div id="main" class="main">
     <div id="title" class="title">Jeu du pendu</div>
     <div id="sadness" style="color:white;visibility:hidden;padding:20px;">Pourquoi êtes vous venu ici alors ? Allez,
         jouons un peu !
+    </div>
+    <div id="perdu" style="color:white;visibility:hidden;padding:20px;">Vous avez perdu ! Réessayez une prochaine fois
+        !<br/> Voici le mot qu'il fallait trouver.
     </div>
     <div id="listelabel" class="lettres-style">
         La liste de vos lettres utilisées :<br/><br/>
@@ -313,18 +328,12 @@
             class="button-class" id="btn_sub" value="OK"
             type="button"><br/>
     </form>
-    <div id="perdu" style="color:white;visibility:hidden;padding:20px;">Vous avez perdu ! Réessayez une prochaine fois
-        !<br/> Voici le mot qu'il fallait trouver.
-    </div>
+
     <input id="button" class="button-class" type="button" value="Jouer">
     <input class="button-class" type="button" id="button2" value="Ne pas jouer">
     <br/>
 </div>
-<br/><input class="button-class" style="width: 300px;position:absolute;" type="button" id="hide"
-            value="Afficher / Cacher la liste des mots">
-<div id="main2" class="main2" style="visibility:hidden;">
-    <section></section>
-</div>
+<br/>
 
 <br/><br/>
 
