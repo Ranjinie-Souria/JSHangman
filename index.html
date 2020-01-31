@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Jeu du pendu en Javascript</title>
+    <title>Javascript Hangman</title>
     <style>
         body{
             background: fixed linear-gradient(#1f030a, #c00037);
@@ -294,43 +294,44 @@
 </head>
 
 <body>
-<h1>Jeu du pendu</h1>
+<h1>Hangman</h1>
 <input class="button-class" style="width: 300px;position:absolute;z-index:5;top:100px;" type="button" id="hide"
-       value="Afficher / Cacher la liste des mots">
+       value="Show / Hide the list">
 <div id="main2" class="main2" style="visibility:hidden;position:absolute;top:150px;">
     <section></section>
 </div>
 
 <div class="main" id="victory" style="visibility:hidden">
-    <div class="title">Victoire</div>
-    <div class="texte"> Félicitations ! Vous avez deviné le mot !<br/> Il s'agissait de <input id="lemot" disabled>
+    <div class="title">Victory</div>
+    <div class="texte"> Congratulations ! You guessed the word !<br/><br/> The word was <input id="lemot" disabled>
     </div>
 </div>
 <input type="hidden" id="motDeviner">
 <div id="main" class="main">
-    <div id="title" class="title">Jeu du pendu</div>
-    <div id="sadness" style="color:white;visibility:hidden;padding:20px;">Pourquoi êtes vous venu ici alors ? Allez,
-        jouons un peu !
+    <div id="title" class="title">Hangman</div>
+    <div id="sadness" style="color:white;visibility:hidden;padding:20px;">Why did you come here if you didn't want to
+        play ?
+        Come on, let's play !
     </div>
-    <div id="perdu" style="color:white;visibility:hidden;padding:20px;">Vous avez perdu ! Réessayez une prochaine fois
-        !<br/> Voici le mot qu'il fallait trouver.
+    <div id="perdu" style="color:white;visibility:hidden;padding:20px;">You lost ! Try again another time. <br/> The
+        word you had to find was :
     </div>
     <div id="listelabel" class="lettres-style">
-        La liste de vos lettres utilisées :<br/><br/>
+        Letters you already used :<br/><br/>
         <textarea id="liste" disabled></textarea></div>
-    <div id="maintext" class="texte">Bienvenue sur ce mini jeu créé à l'aide de Javascript.<br/>
-        Prêt à jouer ?<br/></div>
+    <div id="maintext" class="texte">Welcome to this minigame written in Javascript.<br/>
+        Ready to play ?<br/></div>
     <form id="le_form" name="le_form" style="visibility:hidden;">
         <input style="margin-right:auto;margin-left:auto;" id="le_mot" type="text" disabled><br/><br/>
-        Vous ne pouvez qu'entrer qu'une lettre à la fois, si vous entrez un mot, seule la première lettre sera
-        comptée.<br/><br/>
-        <label id="nom">Lettre : </label><input id="name" name="nom" placeholder="Entrez une lettre"><input
+        You can only write a single letter. If you enter a word, only the first letter of your word will be
+        submitted.<br/><br/>
+        <label id="nom">Letter : </label><input id="name" name="nom" placeholder="Enter a letter"><input
             class="button-class" id="btn_sub" value="OK"
             type="button"><br/>
     </form>
 
-    <input id="button" class="button-class" type="button" value="Jouer">
-    <input class="button-class" type="button" id="button2" value="Ne pas jouer">
+    <input id="button" class="button-class" type="button" value="Play">
+    <input class="button-class" type="button" id="button2" value="Don't play">
     <br/>
 </div>
 <br/>
